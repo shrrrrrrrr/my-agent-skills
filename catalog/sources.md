@@ -15,7 +15,8 @@ Preset 使用的第三方技能通常不复制进本仓库，由 Skill Manager �
 | postgres-best-practices | neondatabase/postgres-skills | Apache-2.0 |
 | prisma-* | prisma/skills | MIT；Prisma 官方技能 |
 | zotero | alex-roc/zotero-agent，skill | AGPL-3.0；需要另外安装 zot CLI |
-| 本仓库 skills/* | shrrrrrrrr/my-agent-skills | 用户自定义技能 |`r`n| skill-advisor | shrrrrrrrr/skill-advisor | 独立仓库；全局 Junction 直接指向本地检出，不经过 Skill Manager |
+| 本仓库 skills/* | shrrrrrrrr/my-agent-skills | 用户自定义技能 |
+| skill-advisor | shrrrrrrrr/skill-advisor | 独立仓库；全局 Junction 直接指向本地检出，不经过 Skill Manager |
 | find-skills | vercel-labs/skills，skills/find-skills | MIT；仓库管理并直接全局启用 |
 | grilling | mattpocock/skills，skills/productivity/grilling | MIT；仓库管理并直接全局启用 |
 | humanizer-zh | op7418/Humanizer-zh | 目录自带 LICENSE；仓库管理并直接全局启用 |

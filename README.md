@@ -196,7 +196,7 @@ git push
 
 它会比较 Manager 状态和 `catalog/presets.yml`，给出主 Preset、可选 Preset、重复项和部署预览命令。默认只推荐，不会未经确认部署、删除或推送。
 
-源文件在 `skills/skill-advisor/`，全局入口在 `C:\Users\shr\.agents\skills\skill-advisor`。全局入口是指向仓库源目录的 Junction，因此本地仓库一更新就立即生效；GitHub 上的新提交仍需先 `git pull` 到本机。
+`skill-advisor` 已独立维护在 https://github.com/shrrrrrrrr/skill-advisor；全局入口 `C:\Users\shr\.agents\skills\skill-advisor` 通过 Junction 指向 `C:\Users\shr\Tools\skill-advisor`。
 
 ## 全局常驻技能
 
