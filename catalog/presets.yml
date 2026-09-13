@@ -1,0 +1,50 @@
+version: 1
+presets:
+  - name: 中文文学写作
+    icon: "✍️"
+    description: 中文小说、散文、人物情节与长文内容创作
+    skills: [chinese-literary-workshop, chinese-writing-style, longform-research-writing, humanizer-zh]
+  - name: 学术写作与合规改写
+    icon: "🎓"
+    description: 论文写作、合规改写、引文核验和投稿前审阅
+    skills: [academic-revision-integrity, latex-thesis-zh, paper-writing-studio, paper-audit, bib-search-citation, academic-writing, source-verification, fact-check-workflow]
+  - name: 文献研究与 Zotero
+    icon: "📚"
+    description: 文献检索、核验、去重、确认后导入 Zotero 和阅读笔记
+    skills: [literature-to-zotero, zotero, bib-search-citation, source-verification, fact-check-workflow]
+  - name: 软件工程标准流程
+    icon: "🧭"
+    description: 需求、规格、任务拆分、测试、调试、审查、发布和复盘
+    skills: [software-engineering-workflow, spec-first-development, tdd, diagnosing-bugs, release-verification, resolving-merge-conflicts, project-retrospective]
+  - name: 前端与动效
+    icon: "✨"
+    description: 前端界面、动效设计、原型与 UI 库选择
+    skills: [animate, animation-vocabulary, apple-design, emil-design-eng, find-animation-opportunities, frontend-design, improve-animations, pick-ui-library, prototype, review-animations]
+  - name: React 前端开发
+    icon: "⚛️"
+    description: React 和 Next.js 性能、组件架构、设计审查与页面过渡
+    skills: [vercel-react-best-practices, web-design-guidelines, vercel-composition-patterns, writing-guidelines, vercel-react-view-transitions]
+  - name: 后端与 API 安全
+    icon: "🛡️"
+    description: API 设计、认证、数据验证、限流与上线安全检查
+    skills: [backend-api-design, api-hardening, secure-auth, security-checklist, python-pipeline]
+  - name: PostgreSQL 数据库
+    icon: "🐘"
+    description: PostgreSQL 和 Supabase 的表结构、SQL、索引、优化与迁移
+    skills: [postgres-best-practices, database-migration-safety]
+  - name: Prisma ORM
+    icon: "🔷"
+    description: Prisma 初始化、Client API、CLI 与 Prisma Postgres
+    skills: [prisma-database-setup, prisma-client-api, prisma-cli, prisma-postgres, database-migration-safety]
+  - name: 笔记与知识整理
+    icon: "🗂️"
+    description: Markdown 知识库、会议记录、来源笔记、项目记忆与复盘
+    skills: [knowledge-note-organizer, meeting-notes-to-actions, longform-research-writing, project-retrospective]
+  - name: 学习助教
+    icon: "🧠"
+    description: 学习计划、渐进教学、主动回忆、练习和掌握度检查
+    skills: [learning-coach, teach]
+  - name: 飞书
+    icon: "🪽"
+    description: 飞书 CLI 的文档、消息、日历、表格、会议和工作流能力
+    skills: [lark-approval, lark-apps, lark-attendance, lark-base, lark-calendar, lark-contact, lark-doc, lark-drive, lark-event, lark-im, lark-mail, lark-markdown, lark-minutes, lark-okr, lark-openapi-explorer, lark-shared, lark-sheets, lark-skill-maker, lark-slides, lark-task, lark-vc, lark-vc-agent, lark-whiteboard, lark-wiki, lark-workflow-meeting-summary, lark-workflow-standup-report]
