@@ -1,0 +1,37 @@
+version: 1
+global_root: "C:/Users/shr/.agents/skills"
+policy: "direct-global-no-skill-manager-deploy"
+repository_managed:
+  - find-skills
+  - grilling
+  - humanizer-zh
+  - skill-advisor
+manifest_only_platform_skills:
+  - automate
+  - autopilot
+  - canvas
+  - create-hook
+  - create-rule
+  - create-skill
+  - create-subagent
+  - deploy-with-vercel
+  - goal
+  - loop
+  - migrate-to-skills
+  - new-repo
+  - onboard
+  - origin
+  - rename-chat
+  - review
+  - review-bugbot
+  - review-security
+  - sdk
+  - share
+  - shell
+  - split-to-prs
+  - statusline
+  - update-cli-config
+  - update-cursor-settings
+non_skill_directories:
+  - name: skills-main
+    note: "Downloaded source bundle; not a directly callable skill."

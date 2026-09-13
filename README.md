@@ -197,3 +197,20 @@ git push
 它会比较 Manager 状态和 `catalog/presets.yml`，给出主 Preset、可选 Preset、重复项和部署预览命令。默认只推荐，不会未经确认部署、删除或推送。
 
 源文件在 `skills/skill-advisor/`，全局入口在 `C:\Users\shr\.agents\skills\skill-advisor`。全局入口是指向仓库源目录的 Junction，因此本地仓库一更新就立即生效；GitHub 上的新提交仍需先 `git pull` 到本机。
+
+## 全局常驻技能
+
+全局技能直接从 `C:\Users\shr\.agents\skills` 被 Codex 发现，不需要经过 Skill Manager 部署，也不应在 `C:\Users\shr\.skills-manager\skills` 再保存一份。
+
+由本仓库直接管理的常驻技能：
+
+- `find-skills`：发现可安装的技能；上游为 `vercel-labs/skills`。
+- `grilling`：通过连续追问压力测试方案；上游为 `mattpocock/skills`。
+- `humanizer-zh`：中文文本去 AI 痕迹与自然化编辑。
+- `skill-advisor`：根据目标推荐最小够用的 Preset。
+
+这四个目录在 `.agents\skills` 中都是 Junction，实际指向本仓库的 `skills/`。修改本地仓库会立即反映到全局目录；其他电脑在 GitHub 更新后，需要先执行 `git pull`。
+
+同目录下由 Codex/开发工作流提供的其他全局技能不复制进仓库，避免产生需要手工追踪的第二份平台源码；它们的名称登记在 [catalog/global-skills.yml](catalog/global-skills.yml)，可在 GitHub 中查看和盘点。
+
+全局技能不要加入 Preset。Preset 若依赖某个全局技能，应在 `catalog/presets.yml` 使用 `global_dependencies` 标记，而不是再安装到 Skill Manager 中央库。

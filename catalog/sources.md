@@ -1,6 +1,6 @@
 # Skill sources
 
-第三方技能不复制进本仓库。Skill Manager 从以下上游安装，本仓库只保存自定义技能和 Preset 成员清单。
+Preset 使用的第三方技能通常不复制进本仓库，由 Skill Manager 从上游安装。少量需要一直启用的全局技能会连同上游说明收录在 `skills/`，并从 `.agents/skills` 直接链接使用。
 
 | Skills | Upstream | License / notes |
 |---|---|---|
@@ -16,5 +16,8 @@
 | prisma-* | prisma/skills | MIT；Prisma 官方技能 |
 | zotero | alex-roc/zotero-agent，skill | AGPL-3.0；需要另外安装 zot CLI |
 | 本仓库 skills/* | shrrrrrrrr/my-agent-skills | 用户自定义技能 |
+| find-skills | vercel-labs/skills，skills/find-skills | MIT；仓库管理并直接全局启用 |
+| grilling | mattpocock/skills，skills/productivity/grilling | MIT；仓库管理并直接全局启用 |
+| humanizer-zh | op7418/Humanizer-zh | 目录自带 LICENSE；仓库管理并直接全局启用 |
 
 锁定版本时应记录具体 Git commit；升级前重新检查 SKILL.md、脚本、依赖和许可证。

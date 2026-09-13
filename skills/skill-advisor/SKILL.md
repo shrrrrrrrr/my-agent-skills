@@ -13,7 +13,7 @@ description: Recommend which locally installed Skill Manager Presets and skills 
 
 1. `C:/Users/shr/.agents/skills`：当前全局可见的技能目录。
 2. `C:/Users/shr/.skills-manager/skills-manager-cli.exe` 和 `C:/Users/shr/.skills-manager/skills`：Skill Manager 的安装状态、Preset 和来源。Windows 下实际 CLI 位于 `D:/APPS/Skills Manager/skills-manager-cli.exe`。
-3. 本地 Git 仓库 `C:/Users/shr/Documents/Codex/2026-09-08/new-chat-3/my-agent-skills` 的 `catalog/presets.yml`、`skills/` 和 `packs/`。
+3. 本地 Git 仓库 `C:/Users/shr/Documents/Codex/2026-09-08/new-chat-3/my-agent-skills` 的 `catalog/presets.yml`、`catalog/global-skills.yml`、`skills/` 和 `packs/`。
 4. 如果仓库不存在或用户要求最新清单，先在该仓库执行安全的 `git pull`；网络不可用时明确标注使用的是缓存清单。
 
 不要把 GitHub 网页内容当作唯一事实；优先使用本地已检出的 `catalog/presets.yml`，并把实际 Manager 状态与仓库清单的差异列出来。
@@ -22,7 +22,7 @@ description: Recommend which locally installed Skill Manager Presets and skills 
 
 1. 把用户目标拆成领域、技术栈、交付阶段和风险约束。
 2. 运行 `skills-manager-cli.exe --json repo status`、`presets list` 和 `skills list`，确认已安装技能与当前部署状态。
-3. 读取 `catalog/presets.yml`，为每个候选 Preset 计算匹配理由。
+3. 读取 `catalog/presets.yml` 和 `catalog/global-skills.yml`，先排除已经全局常驻、不需要部署的技能，再为每个候选 Preset 计算匹配理由。
 4. 推荐一个“最小组合”：主 Preset、可选辅助 Preset，以及不建议启用的无关 Preset。
 5. 解释每个推荐项会解决什么问题、预计会影响哪些 Agent/项目目录，并指出重复技能。
 6. 给出可复制的预览命令，例如 `presets deploy <preset> --agent codex --dry-run`。只有用户明确说“部署/执行”后，才运行无 `--dry-run` 的部署命令。

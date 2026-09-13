@@ -3,7 +3,8 @@ presets:
   - name: 中文文学写作
     icon: "✍️"
     description: 中文小说、散文、人物情节与长文内容创作
-    skills: [chinese-literary-workshop, chinese-writing-style, longform-research-writing, humanizer-zh]
+    skills: [chinese-literary-workshop, chinese-writing-style, longform-research-writing]
+    global_dependencies: [humanizer-zh]
   - name: 学术写作与合规改写
     icon: "🎓"
     description: 论文写作、合规改写、引文核验和投稿前审阅
