@@ -94,3 +94,106 @@ Preset 不是聊天命令。先在 Skill Manager 中部署，然后正常说需�
 - API Key、Token、Cookie、数据库密码不提交到仓库。
 - 不整库安装来源不明的技能；新增技能前检查 `SKILL.md`、脚本、依赖和许可证。
 - Preset 默认不部署，避免 Codex `/` 菜单出现大量不相关技能。
+
+## Skill Manager 完整操作说明
+
+以下命令在 PowerShell 中执行。先定义 CLI 路径：
+
+```powershell
+$sm = 'D:\APPS\Skills Manager\skills-manager-cli.exe'
+```
+
+### 查看状态
+
+```powershell
+& $sm --json repo status
+& $sm --json agents list
+& $sm --json skills list
+& $sm --json presets list
+```
+
+它们依次显示中央库、Agent 目标目录、技能和 Preset。不要直接编辑 `skills-manager.db`。
+
+### 新建和编辑 Preset
+
+```powershell
+& $sm --json presets create '我的新技能包' --description '这个包适合什么工作' --icon '🧩'
+& $sm --json presets add-skill '我的新技能包' skill-one skill-two
+& $sm --json presets remove-skill '我的新技能包' skill-one
+```
+
+Preset 只是分组，新建后不会部署。增删成员只改变关系，不删除中央库 Skill。完成后同步修改 `catalog/presets.yml`。
+
+### 安装或纳管 Skill
+
+```powershell
+& $sm --json skills install 'owner/repository@skill-name' --git
+& $sm --json skills adopt 'C:\完整路径\skill-folder'
+& $sm skills install --help
+& $sm skills set-source --help
+```
+
+仓库结构不同时，按帮助指定 URL、分支和子路径。安装前检查 `SKILL.md`、脚本、依赖和许可证。安装一次后保存在中央库，不需每次下载。GitHub Skill 应使用 `set-source` 绑定来源。
+
+### 部署和取消部署
+
+```powershell
+& $sm --json presets deploy '我的新技能包' --agent codex --dry-run
+& $sm --json presets deploy '我的新技能包' --agent codex
+& $sm --json presets undeploy '我的新技能包' --agent codex
+```
+
+先 dry-run 再部署。部署是叠加式的；不要用旧的 `presets apply` 做日常部署，因为它是排他式切换。取消部署只清理 Manager 记录的部署副本，保留 Preset、中央库和 GitHub。手动复制或改名的文件不一定被清理。
+
+### 删除 Preset
+
+1. 对所有已部署 Agent 执行 `presets undeploy`。
+2. 在 Skill Manager 界面删除 Preset。
+3. 从 `catalog/presets.yml` 删除对应条目。
+4. 检查其中 Skill 是否仍被其他 Preset 使用。
+5. 提交并推送仓库。
+
+删除 Preset 通常只删除分组，不等于删除其中的 Skill。
+
+### 删除中央库 Skill
+
+先从所有 Preset 移除并取消部署：
+
+```powershell
+& $sm --json skills remove skill-name
+```
+
+若 CLI 报告仍有引用，先处理引用；确认目标后才按帮助增加确认参数。第三方上游仓库不会被删除。若是自定义 Skill，还要删除 `skills/skill-name/`、更新清单并提交：
+
+```powershell
+git add .
+git commit -m 'remove unused skill'
+git push
+```
+
+### 修改自定义 Skill
+
+在本地仓库修改 `skills/skill-name/`，检查名称、触发描述和引用文件，提交并推送 GitHub，再在 Skill Manager 同步/更新并重新部署。GitHub 应作为自定义 Skill 的源头，中央库不应是唯一编辑副本。
+
+### 不部署时是否删除文件
+
+不会。GitHub、中央库和 Preset 都保留，只是不新增到目标 Agent。以前部署过的内容必须执行 `undeploy` 才会移除由 Manager 管理的副本。
+
+### GitHub 与本地的职责
+
+- GitHub：源码、README、Preset 清单、版本和跨电脑备份。
+- Skill Manager 中央库：本机已安装、可部署的 Skill。
+- Skill Manager 数据库：实际 Preset 成员、来源和部署记录。
+- Agent/项目技能目录：真正暴露给 Agent 的副本。
+
+`catalog/presets.yml` 是可读备份，目前不会自动导入 Manager 数据库。
+
+## 常驻 Skill Advisor
+
+`skill-advisor` 常驻全局目录。只需描述目标，例如：
+
+> 我要做一个 React + PostgreSQL 的后台管理系统，应该部署哪些 Preset？
+
+它会比较 Manager 状态和 `catalog/presets.yml`，给出主 Preset、可选 Preset、重复项和部署预览命令。默认只推荐，不会未经确认部署、删除或推送。
+
+源文件在 `skills/skill-advisor/`，全局入口在 `C:\Users\shr\.agents\skills\skill-advisor`。全局入口是指向仓库源目录的 Junction，因此本地仓库一更新就立即生效；GitHub 上的新提交仍需先 `git pull` 到本机。
