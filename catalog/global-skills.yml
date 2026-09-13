@@ -32,6 +32,4 @@ manifest_only_platform_skills:
   - statusline
   - update-cli-config
   - update-cursor-settings
-non_skill_directories:
-  - name: skills-main
-    note: "Downloaded source bundle; not a directly callable skill."
+"Downloaded source bundle; not a directly callable skill."
