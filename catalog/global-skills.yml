@@ -5,7 +5,7 @@ repository_managed:
   - find-skills
   - grilling
   - humanizer-zh
-  - skill-advisor
+  - skill-advisor  # source: https://github.com/shrrrrrrrr/skill-advisor
 manifest_only_platform_skills:
   - automate
   - autopilot
